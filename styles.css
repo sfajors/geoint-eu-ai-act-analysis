@@ -1,0 +1,212 @@
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    margin: 0;
+    padding: 6em 8px; /* padding adjusted for consistent spacing */
+    border-radius: 15px;
+    position: relative; /* Ensure position relative for stacking context */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 0.15em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keep the gradient in the background */
+    background: linear-gradient(-45deg, #6d7fad, #5b849e, #85804a, #655d05, #0e3f95, #6462a3, #373662);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.statement-container,
+.content-container {
+    width: 90%;
+    padding: 1em;
+    margin: 0 auto;
+    z-index: 1; /* Ensure this is above the gradient */
+    position: relative;
+}
+
+.main-statement {
+    margin: 0;
+    text-align: left;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.first-statement,
+.second-statement {
+    font-size: 3.5em; /* consistent sizing for simplification */
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.25em;
+}
+
+.second-statement {
+    font-size: 2.75em;
+    text-decoration: underline;
+    margin-top: 0.25em;
+}
+
+/* Base styles for all articles */
+.article-5, .article-6, .article-14, .article-10, .article-15, .article-8, .article-16, .article-9, .article-12, .article-13 {
+    padding: 1em 2em; /* Adjust padding for all articles uniformly */
+    border: 1.5px solid white;
+    color: white;
+    border-radius: 15px;
+    width: auto;
+    max-width: 48vw; /* Slightly less than half the viewport width for spacing */
+    margin: 4em auto; /* Increase margin to enhance the staggered effect */
+    z-index: 2;
+    position: relative;
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Staggering effects using nth-child */
+.article-5, .article-10, .article-15 {
+    transform: translateX(-20%);
+}
+
+.article-6, .article-11, .article-16 {
+    transform: translateX(20%);
+}
+
+.article-14, .article-9, .article-13 {
+    transform: translateX(-30%);
+}
+
+.article-8, .article-12 {
+    transform: translateX(30%);
+}
+
+/* Hover effect to slightly increase size and emphasize article */
+.article-5:hover, .article-6:hover, .article-14:hover, .article-10:hover, .article-15:hover, .article-8:hover, .article-16:hover, .article-9:hover, .article-12:hover, .article-13:hover {
+    transform: scale(1.05);
+}
+
+/* Ensuring responsiveness */
+@media (max-width: 800px) {
+    .article-5, .article-6, .article-14, .article-10, .article-15, .article-8, .article-16, .article-9, .article-12, .article-13 {
+        max-width: 80vw; /* Wider on smaller screens */
+        transform: translateX(0); /* Disable staggering on smaller screens for readability */
+    }
+}
+
+.collapsible {
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 2em;
+    font-variant: all-small-caps;
+    background-color: transparent;
+}
+
+.collapsible:hover, .collapsible:focus {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.content, .summary {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.collapsible:hover, .collapsible:focus,
+.summary-reveal:hover, .summary-reveal:focus {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.summary-reveal {
+    cursor: pointer;
+    margin-top: 1em;
+    padding: 8px 16px;
+    font-size: 1em;
+    background-color: transparent;
+    color: white;
+    border: none;
+    text-align: center;
+}
+
+.summary-reveal:hover {
+    background-color: #5b849e;
+    text-decoration: underline;
+    font-style: normal;
+    color: #ffffff;
+}
+
+.quiz-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 2em auto;
+    width: 60vw;
+    max-width: 80vw;
+}
+
+.question-container {
+    margin-bottom: 20px;
+}
+
+.quiz-container button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #5b849e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quiz-container button:hover {
+    background-color: #3a6073;
+}
+
+.quiz-container #next-btn, .quiz-container #restart-btn {
+    display: none; /* Initially hide the next and restart buttons */
+}
+
+.quiz-container #restart-btn {
+    margin-top: 10px; /* Additional styling to separate the restart button visually */
+}
+
+.next-question {
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 1em;
+    background-color: #85804a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.next-question:hover {
+    background-color: #5d5934;
+}
